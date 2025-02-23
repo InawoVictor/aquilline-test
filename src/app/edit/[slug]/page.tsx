@@ -11,7 +11,7 @@ import { saveAs } from "file-saver";
 const ImageEdit = () => {
   const router = useRouter();
   const params = useParams();
-  const id = params.slug
+  const id = Array.isArray(params.slug) ? params.slug[0] : params.slug;
   const [width, setWidth] = useState(300);
   const [height, setHeight] = useState(200);
   const [greyscale, setGreyscale] = useState(false);
@@ -20,7 +20,7 @@ const ImageEdit = () => {
 
   const { data, isLoading } = useQuery<any>({
     queryKey: ["image", id],
-    queryFn: async () => galleryService.getImageInfo(params.slug), 
+    queryFn: async () => galleryService.getImageInfo(id as string), 
     enabled: !!params.slug, 
     staleTime: 60 * 1000, 
     retry: 3,
