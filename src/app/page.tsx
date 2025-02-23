@@ -22,13 +22,21 @@ const GalleryLoading = () => (
 );
 
 export default function Home() {
-  const [page, setPage] = useState<number>(() => {
-    return Number(localStorage.getItem("currentPage")) || 1;
-  });
+  const [page, setPage] = useState<number>(1);
+  const [isClient, setIsClient] = useState(false);
+
+  // Ensure this runs only on the client side
+  useEffect(() => {
+    setIsClient(true);
+    const savedPage = localStorage.getItem("currentPage");
+    if (savedPage) setPage(Number(savedPage));
+  }, []);
 
   useEffect(() => {
-    localStorage.setItem("currentPage", page.toString());
-  }, [page]);
+    if (isClient) {
+      localStorage.setItem("currentPage", page.toString());
+    }
+  }, [page, isClient]);
 
   const { data, isLoading } = useQuery<any>({
     queryKey: ["images", page],
@@ -44,7 +52,7 @@ export default function Home() {
   }
 
   return (
-    <div className="py-20 px-[7%] font-[family-name:var(--font-geist-sans)]">
+    <div className="py-20 px-[7%]">
       <h2 className="text-white text-center text-2xl">
         Aquilline I<i className="">V</i>&nbsp; Image Gallery
       </h2>
