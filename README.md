@@ -9,6 +9,8 @@ TailwindCSS: For responsive and modern UI.
 
 TypeScript: Ensuring type safety.
 
+TanStack Query / React Query: To cache fetched data.
+
 LocalStorage / URL Params: To persist state across refreshes and history navigation.
 
 ## Key Features
