@@ -46,7 +46,7 @@ const ImageEdit = () => {
     try {
       const response = await fetch(url);
       const blob = await response.blob();
-      saveAs(blob, "downloaded-image.jpg");
+      saveAs(blob, `downloaded-image-${id}.jpg`);
     } catch (error) {
       console.error("Error downloading the image:", error);
     }
