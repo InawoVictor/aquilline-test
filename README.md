@@ -78,13 +78,12 @@ npm install
 ```
 
 Run the development server:
-
-Install dependencies:
 ```bash
 npm run dev
 ```
 
 Open [http://localhost:3000] in your browser.
+
 
 ## Deployed on Vercel
 
